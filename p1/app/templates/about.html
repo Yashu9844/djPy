@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Modern Web App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .about-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: bounceIn 0.8s ease-out;
+        }
+
+        .about-content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 3rem;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+            cursor: pointer;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05) rotateZ(2deg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #ffd700;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .team-section {
+            margin-top: 4rem;
+        }
+
+        .team-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: block;
+            margin: 3rem auto;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="about-header">
+            <h1>About Our Company</h1>
+            <p style="font-size: 1.3rem; opacity: 0.9;">Building the future, one line of code at a time</p>
+        </div>
+
+        <div class="about-content">
+            <p>
+                🚀 We are a passionate team of developers, designers, and innovators dedicated to creating 
+                exceptional digital experiences. Our mission is to transform ideas into reality through 
+                cutting-edge technology and creative solutions.
+            </p>
+            <p>
+                💡 With years of experience in web development, we've helped countless businesses achieve 
+                their digital goals. We believe in the power of technology to change lives and create 
+                meaningful connections.
+            </p>
+            <p>
+                🌟 Our approach combines technical excellence with user-centered design, ensuring that 
+                every project we deliver not only works flawlessly but also delights users at every touchpoint.
+            </p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card" onclick="animateNumber(this)">
+                <div class="stat-number" data-target="150">0</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-card" onclick="animateNumber(this)">
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-label">Happy Clients</div>
+            </div>
+            <div class="stat-card" onclick="animateNumber(this)">
+                <div class="stat-number" data-target="25">0</div>
+                <div class="stat-label">Team Members</div>
+            </div>
+            <div class="stat-card" onclick="animateNumber(this)">
+                <div class="stat-number" data-target="99">0</div>
+                <div class="stat-label">Customer Satisfaction</div>
+            </div>
+        </div>
+
+        <button class="cta-button" onclick="joinTeam()">
+            <span>Join Our Team 🎯</span>
+        </button>
+    </div>
+
+    <script>
+        // Animate numbers on click
+        function animateNumber(card) {
+            const numberElement = card.querySelector('.stat-number');
+            const target = parseInt(numberElement.getAttribute('data-target'));
+            const duration = 1500;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    numberElement.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    numberElement.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Auto-animate stats on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.stat-card').forEach((card, index) => {
+                    setTimeout(() => animateNumber(card), index * 200);
+                });
+            }, 500);
+        });
+
+        // CTA button action
+        function joinTeam() {
+            const responses = [
+                "🎉 Awesome! We'd love to have you on board!",
+                "✨ Great choice! Check your email for next steps.",
+                "🚀 Welcome to the team! Let's build something amazing!"
+            ];
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            alert(randomResponse);
+            
+            // Add a fun animation
+            const button = event.target.closest('.cta-button');
+            button.style.animation = 'bounceIn 0.5s ease-out';
+            setTimeout(() => {
+                button.style.animation = '';
+            }, 500);
+        }
+
+        // Add parallax effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.stat-card');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            cards.forEach((card, index) => {
+                const offsetX = (x - 0.5) * 20 * (index % 2 === 0 ? 1 : -1);
+                const offsetY = (y - 0.5) * 20 * (index % 2 === 0 ? 1 : -1);
+                card.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
