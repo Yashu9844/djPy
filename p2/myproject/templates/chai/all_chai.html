@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Chai - Our Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .chai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .chai-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s;
+            animation: fadeInUp 0.8s ease-out;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chai-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .chai-card:hover::before {
+            opacity: 1;
+            animation: rotate 3s linear infinite;
+        }
+
+        .chai-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .chai-icon {
+            font-size: 5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .chai-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .chai-type {
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .chai-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            text-align: center;
+        }
+
+        .price {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            color: #ffd700;
+        }
+
+        .order-btn {
+            width: 100%;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            background: linear-gradient(45deg, #f5af19, #f12711);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .order-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'chaihome' %}">Home</a></li>
+            <li><a href="{% url 'alliswell' %}">All Chai</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>☕ Our Chai Collection</h1>
+            <p class="subtitle">Discover the perfect blend for every mood</p>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Varieties</button>
+            <button class="filter-btn" data-filter="classic">Classic</button>
+            <button class="filter-btn" data-filter="premium">Premium</button>
+            <button class="filter-btn" data-filter="special">Special</button>
+        </div>
+
+        <div class="chai-grid">
+            <div class="chai-card" data-category="classic">
+                <span class="chai-icon">☕</span>
+                <h3>Masala Chai</h3>
+                <p class="chai-type">Classic Blend</p>
+                <p>Traditional Indian spiced tea with cardamom, ginger, and cinnamon</p>
+                <div class="price">$4.99</div>
+                <button class="order-btn" onclick="orderChai('Masala Chai')">Order Now</button>
+            </div>
+
+            <div class="chai-card" data-category="premium">
+                <span class="chai-icon">🍵</span>
+                <h3>Kashmiri Kahwa</h3>
+                <p class="chai-type">Premium Green Tea</p>
+                <p>Saffron-infused green tea with almonds and rose petals</p>
+                <div class="price">$6.99</div>
+                <button class="order-btn" onclick="orderChai('Kashmiri Kahwa')">Order Now</button>
+            </div>
+
+            <div class="chai-card" data-category="classic">
+                <span class="chai-icon">🫖</span>
+                <h3>Ginger Chai</h3>
+                <p class="chai-type">Classic Spiced</p>
+                <p>Bold ginger flavor with black tea for a warming experience</p>
+                <div class="price">$4.49</div>
+                <button class="order-btn" onclick="orderChai('Ginger Chai')">Order Now</button>
+            </div>
+
+            <div class="chai-card" data-category="special">
+                <span class="chai-icon">🌟</span>
+                <h3>Saffron Chai</h3>
+                <p class="chai-type">Royal Special</p>
+                <p>Luxurious blend with pure saffron and cardamom</p>
+                <div class="price">$8.99</div>
+                <button class="order-btn" onclick="orderChai('Saffron Chai')">Order Now</button>
+            </div>
+
+            <div class="chai-card" data-category="premium">
+                <span class="chai-icon">🌿</span>
+                <h3>Tulsi Chai</h3>
+                <p class="chai-type">Premium Herbal</p>
+                <p>Holy basil tea with immunity-boosting properties</p>
+                <div class="price">$5.99</div>
+                <button class="order-btn" onclick="orderChai('Tulsi Chai')">Order Now</button>
+            </div>
+
+            <div class="chai-card" data-category="classic">
+                <span class="chai-icon">☕</span>
+                <h3>Cardamom Chai</h3>
+                <p class="chai-type">Classic Aromatic</p>
+                <p>Delicate cardamom flavor with smooth black tea</p>
+                <div class="price">$4.99</div>
+                <button class="order-btn" onclick="orderChai('Cardamom Chai')">Order Now</button>
+            </div>
+
+            <div class="chai-card" data-category="special">
+                <span class="chai-icon">🎋</span>
+                <h3>Rose Chai</h3>
+                <p class="chai-type">Floral Special</p>
+                <p>Fragrant rose petals blended with premium black tea</p>
+                <div class="price">$7.49</div>
+                <button class="order-btn" onclick="orderChai('Rose Chai')">Order Now</button>
+            </div>
+
+            <div class="chai-card" data-category="premium">
+                <span class="chai-icon">🍂</span>
+                <h3>Darjeeling Chai</h3>
+                <p class="chai-type">Premium Estate</p>
+                <p>First flush Darjeeling with delicate muscatel notes</p>
+                <div class="price">$9.99</div>
+                <button class="order-btn" onclick="orderChai('Darjeeling Chai')">Order Now</button>
+            </div>
+
+            <div class="chai-card" data-category="special">
+                <span class="chai-icon">🌙</span>
+                <h3>Moon Milk Chai</h3>
+                <p class="chai-type">Night Special</p>
+                <p>Calming blend with ashwagandha and warm spices</p>
+                <div class="price">$7.99</div>
+                <button class="order-btn" onclick="orderChai('Moon Milk Chai')">Order Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const chaiCards = document.querySelectorAll('.chai-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                chaiCards.forEach((card, index) => {
+                    const category = card.getAttribute('data-category');
+                    
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                        card.style.animation = `fadeInUp 0.5s ease-out ${index * 0.1}s backwards`;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Order functionality
+        function orderChai(chaiName) {
+            alert(`🎉 Great choice! Your ${chaiName} is being prepared.\n\nTotal: Includes tax & delivery\nEstimated time: 15-20 minutes`);
+            
+            // Add animation to button
+            event.target.textContent = '✓ Added!';
+            event.target.style.background = 'linear-gradient(45deg, #2ed573, #26de81)';
+            
+            setTimeout(() => {
+                event.target.textContent = 'Order Now';
+                event.target.style.background = 'linear-gradient(45deg, #f5af19, #f12711)';
+            }, 2000);
+        }
+
+        // Stagger animation for cards on load
+        chaiCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
