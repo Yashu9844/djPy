@@ -134,4 +134,20 @@ chaiCards.forEach((card, index) => {
     card.style.transitionDelay = `${index * 0.1}s`;
 });
 </script>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+{% for chai in chais %}
+  <div class="chai-card bg-white/15 rounded-2xl p-8 backdrop-blur border border-white/30 transition hover:-translate-y-2 hover:bg-white/25 cursor-pointer" data-category="{% if chai.type == 'ML' %}classic{% elif chai.type == 'GR' %}premium{% else %}special{% endif %}">
+    {% if chai.image %}
+    <img src="{{ chai.image.url }}" alt="{{ chai.name }}" class="w-full h-48 object-cover rounded-lg mb-4">
+    {% endif %}
+    <h3 class="text-2xl font-semibold text-center mb-1">{{ chai.name }}</h3>
+    <p class="text-center text-sm text-yellow-300 mb-2">{{ chai.get_type_display }}</p>
+    <div class="text-center text-2xl font-bold mt-3 text-yellow-300">${{ chai.price }}</div>
+    <p class="text-center text-xs opacity-80 mt-2">Added {{ chai.date_added|date:"M d, Y" }}</p>
+    <button class="order-btn w-full mt-4 px-4 py-2 rounded-md bg-gradient-to-r from-orange-400 to-red-600 text-white font-semibold transition hover:shadow-lg" onclick="orderChai('{{ chai.name }}')">Order Now</button>
+    <a href="{% url 'chai_detail' chai.id %}" class="mt-3 inline-block w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white text-center hover:bg-white/30">View Details</a>
+  </div>
+{% endfor %}
+</div>
 {% endblock %}

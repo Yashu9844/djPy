@@ -13,3 +13,6 @@ class Chai(models.Model):
         ('CH', 'Chai'),
     )
     type = models.CharField(max_length=2, choices=CHAI_TYPE, default='ML')
+    def __str__(self):
+        return self.name
+

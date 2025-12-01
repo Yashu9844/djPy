@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block title %}{{ chai.name }} - Details{% endblock %}
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-purple-600 to-indigo-800 text-white">
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <a href="{% url 'alliswell' %}" class="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6">
+      <span>←</span>
+      <span>Back to Collection</span>
+    </a>
+
+    <div class="bg-white/10 border border-white/20 backdrop-blur rounded-2xl overflow-hidden">
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="p-4 md:p-6">
+          {% if chai.image %}
+          <img src="{{ chai.image.url }}" alt="{{ chai.name }}" class="w-full h-80 md:h-full object-cover rounded-xl">
+          {% else %}
+          <div class="w-full h-80 md:h-full rounded-xl bg-white/20 flex items-center justify-center">
+            <span class="text-6xl">☕</span>
+          </div>
+          {% endif %}
+        </div>
+        <div class="p-6 md:p-8">
+          <h1 class="text-3xl md:text-4xl font-bold mb-2">{{ chai.name }}</h1>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="px-3 py-1 rounded-full bg-white/20 border border-white/30 text-sm">{{ chai.get_type_display }}</span>
+            <span class="text-yellow-300 font-bold text-2xl">${{ chai.price }}</span>
+          </div>
+          <p class="text-white/85">Added on {{ chai.date_added|date:"M d, Y" }}</p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <button class="px-6 py-3 rounded-md bg-gradient-to-r from-orange-400 to-red-600 text-white font-semibold hover:shadow-lg" onclick="orderChai('{{ chai.name }}')">Order Now</button>
+            <a href="{% url 'alliswell' %}" class="px-6 py-3 rounded-md bg-white/20 border border-white/30 text-white hover:bg-white/30">Explore More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function orderChai(chaiName) {
+  alert(`🎉 Great choice! Your ${chaiName} is being prepared.\n\nTotal: Includes tax & delivery\nEstimated time: 15-20 minutes`);
+}
+</script>
+{% endblock %}
