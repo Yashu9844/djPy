@@ -13,7 +13,17 @@
     {% tailwind_css %}
 </head>
 <body>
-    <nav>Thoi out layout nav</nav>
+    <nav class="bg-black/60 backdrop-blur border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between h-14">
+                <a href="{% url 'chaihome' %}" class="text-white font-semibold">Chai Corner</a>
+                <div class="flex items-center gap-4">
+                    <a href="{% url 'chaihome' %}" class="text-white hover:bg-white/20 px-3 py-1 rounded">Home</a>
+                    <a href="{% url 'alliswell' %}" class="text-white hover:bg-white/20 px-3 py-1 rounded">All Chai</a>
+                </div>
+            </div>
+        </div>
+    </nav>
     {% block content %}
     {% endblock %}
 </body>

@@ -1,256 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chai Home - Welcome</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
-            min-height: 100vh;
-            color: white;
-        }
-
-        nav {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 1rem 2rem;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-        }
-
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 4rem 2rem;
-            animation: fadeIn 1s ease-in;
-        }
-
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: slideDown 0.8s ease-out;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-            animation: slideUp 0.8s ease-out;
-        }
-
-        .chai-cup {
-            font-size: 8rem;
-            margin: 2rem 0;
-            animation: steam 3s ease-in-out infinite;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 2.5rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.4s;
-            text-align: center;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .feature-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .feature-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .cta-button {
-            display: inline-block;
-            margin-top: 3rem;
-            padding: 1.5rem 3rem;
-            background: white;
-            color: #f12711;
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: bold;
-            border-radius: 50px;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            background: #fff5e6;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes steam {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-10px) scale(1.05); }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'chaihome' %}">Home</a></li>
-            <li><a href="{% url 'alliswell' %}">All Chai</a></li>
-        </ul>
-    </nav>
-
-    <div class="container">
-        <div class="hero">
-            <h1>☕ Welcome to Chai Corner</h1>
-            <p class="subtitle">Your perfect cup of happiness awaits</p>
-            <div class="chai-cup">☕</div>
+{% extends 'layout.html' %}
+{% block title %}Chai Home - Welcome{% endblock %}
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-yellow-400 to-red-600 text-white">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="text-center">
+            <h1 class="text-5xl  font-bold mb-2 drop-shadow">☕ Welcome to Chai Corner</h1>
+            <p class="text-xl opacity-90 mb-6">Your perfect cup of happiness awaits</p>
+            <div id="chaiCup" class="text-8xl select-none">☕</div>
         </div>
 
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🍵</div>
-                <h3>Premium Teas</h3>
-                <p>Handpicked leaves from the finest gardens around the world</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+            <div class="feature-card bg-white/15 p-10 rounded-2xl backdrop-blur border border-white/30 text-center transition hover:-translate-y-2 hover:bg-white/25">
+                <div class="text-5xl mb-3 animate-bounce">🍵</div>
+                <h3 class="text-2xl font-semibold mb-2">Premium Teas</h3>
+                <p class="opacity-90">Handpicked leaves from the finest gardens around the world</p>
             </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🌿</div>
-                <h3>Fresh & Natural</h3>
-                <p>100% organic ingredients with no artificial flavors</p>
+            <div class="feature-card bg-white/15 p-10 rounded-2xl backdrop-blur border border-white/30 text-center transition hover:-translate-y-2 hover:bg-white/25">
+                <div class="text-5xl mb-3 animate-bounce">🌿</div>
+                <h3 class="text-2xl font-semibold mb-2">Fresh & Natural</h3>
+                <p class="opacity-90">100% organic ingredients with no artificial flavors</p>
             </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">❤️</div>
-                <h3>Made with Love</h3>
-                <p>Every cup brewed to perfection with care and passion</p>
+            <div class="feature-card bg-white/15 p-10 rounded-2xl backdrop-blur border border-white/30 text-center transition hover:-translate-y-2 hover:bg-white/25">
+                <div class="text-5xl mb-3 animate-bounce">❤️</div>
+                <h3 class="text-2xl font-semibold mb-2">Made with Love</h3>
+                <p class="opacity-90">Every cup brewed to perfection with care and passion</p>
             </div>
         </div>
 
-        <div style="text-align: center;">
-            <a href="{% url 'alliswell' %}" class="cta-button">Explore Our Collection</a>
+        <div class="text-center mt-10">
+            <a href="{% url 'alliswell' %}" class="inline-block mt-6 px-8 py-4 bg-white text-red-600 font-bold rounded-full shadow transition hover:-translate-y-1 hover:bg-orange-50">Explore Our Collection</a>
         </div>
     </div>
+</div>
 
-    <script>
-        // Add interactive hover effect to feature cards
-        document.querySelectorAll('.feature-card').forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.2}s`;
-            
-            card.addEventListener('click', function() {
-                this.style.animation = 'bounce 0.5s ease';
-                setTimeout(() => {
-                    this.style.animation = '';
-                }, 500);
-            });
-        });
+<script>
+document.querySelectorAll('.feature-card').forEach((card, index) => {
+    card.style.animationDelay = `${index * 0.2}s`;
+    card.addEventListener('click', function() {
+        this.classList.add('animate-bounce');
+        setTimeout(() => {
+            this.classList.remove('animate-bounce');
+        }, 500);
+    });
+});
 
-        // Animate chai cup on load
-        const chaiCup = document.querySelector('.chai-cup');
-        chaiCup.addEventListener('click', () => {
-            chaiCup.style.transform = 'rotate(360deg)';
-            chaiCup.style.transition = 'transform 1s ease';
-            setTimeout(() => {
-                chaiCup.style.transform = '';
-            }, 1000);
-        });
-    </script>
-</body>
-</html>
+const chaiCup = document.getElementById('chaiCup');
+chaiCup.addEventListener('click', () => {
+    chaiCup.style.transform = 'rotate(360deg)';
+    chaiCup.style.transition = 'transform 1s ease';
+    setTimeout(() => {
+        chaiCup.style.transform = '';
+    }, 1000);
+});
+</script>
+{% endblock %}
