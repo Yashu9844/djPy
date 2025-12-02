@@ -8,4 +8,5 @@ urlpatterns = [
    
     path('alliswell/',views.alliswell,name='alliswell'),
     path('<int:chai_id>/', views.chai_detail, name='chai_detail'),
+    path('stores/',views.chai_stores,name='chai_stores'),
 ]
