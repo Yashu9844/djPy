@@ -1,0 +1,22 @@
+.# Byte-compiled / optimized / DLL files
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments (inside or next to this repo)
+venv/
+../venv/
+../venv/**
+.venv/
+
+# Django stuff:
+*.log
+db.sqlite3
+
+# VSCode / IDE
+.vscode/
+.idea/
+
+
