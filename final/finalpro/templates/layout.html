@@ -29,13 +29,23 @@
                         <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}" href="{% url 'index' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'tweet_list' %}">Feed</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'tweet_list' %}active{% endif %}" href="{% url 'tweet_list' %}">Feed</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'create_tweet' %}">Compose</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'create_tweet' %}active{% endif %}" href="{% url 'create_tweet' %}">Compose</a>
                     </li>
                 </ul>
-                <div class="d-flex gap-2">
+                <div class="d-flex align-items-center gap-3">
+                    {% if user.is_authenticated %}
+                        <span class="text-muted small">Hi, {{ user.username }}</span>
+                        <form method="post" action="{% url 'logout' %}" class="mb-0">
+                            {% csrf_token %}
+                            <button class="btn btn-outline-light btn-sm" type="submit">Logout</button>
+                        </form>
+                    {% else %}
+                        <a class="btn btn-outline-light btn-sm" href="{% url 'login' %}">Login</a>
+                        <a class="btn btn-gradient btn-sm" href="{% url 'register' %}">Sign up</a>
+                    {% endif %}
                     <span class="badge rounded-pill bg-gradient text-uppercase">Beta</span>
                 </div>
             </div>

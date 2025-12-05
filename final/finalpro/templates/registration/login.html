@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block title %}Sign In | TweetBar{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="glass-card p-4 p-lg-5">
+            <p class="text-accent text-uppercase small fw-semibold mb-2">Welcome back</p>
+            <h2 class="fw-bold mb-3">Sign in to TweetBar</h2>
+            <p class="text-muted mb-4">Pick up the conversation where you left off.</p>
+            <form method="post" class="vstack gap-3">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger py-2 px-3">
+                        {{ form.non_field_errors|join:", " }}
+                    </div>
+                {% endif %}
+                <div>
+                    <label class="form-label fw-semibold">Username</label>
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                        <div class="text-danger small mt-1">{{ form.username.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+                <div>
+                    <label class="form-label fw-semibold">Password</label>
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                        <div class="text-danger small mt-1">{{ form.password.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+                <button class="btn btn-gradient w-100 py-2" type="submit">Sign in</button>
+            </form>
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <a class="text-muted" href="{% url 'password_reset' %}">Forgot password?</a>
+                <a class="btn btn-outline-light btn-sm" href="{% url 'register' %}">Create account</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

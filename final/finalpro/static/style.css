@@ -80,6 +80,8 @@ body {
 }
 
 input[type="text"],
+input[type="email"],
+input[type="password"],
 input[type="file"],
 textarea {
     width: 100%;

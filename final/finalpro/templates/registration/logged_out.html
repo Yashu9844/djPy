@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block title %}Signed Out | TweetBar{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="glass-card p-4 p-lg-5 text-center">
+            <p class="text-accent text-uppercase small fw-semibold mb-2">All done</p>
+            <h2 class="fw-bold mb-3">You’re signed out</h2>
+            <p class="text-muted mb-4">Thanks for spending time with TweetBar. Jump back in anytime.</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a class="btn btn-gradient" href="{% url 'login' %}">Sign in again</a>
+                <a class="btn btn-outline-light" href="{% url 'index' %}">Go to home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

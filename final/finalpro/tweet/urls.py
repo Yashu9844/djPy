@@ -8,4 +8,5 @@ urlpatterns = [
     path("tweets/create/", views.create_tweet, name="create_tweet"),
     path("tweets/<int:pk>/edit/", views.tweet_edit, name="tweet_edit"),
     path("tweets/<int:pk>/delete/", views.tweet_delete, name="tweet_delete"),
+    path("register/", views.register, name="register"),
 ]
