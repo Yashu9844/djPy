@@ -26,7 +26,7 @@ def create_tweet(request):
 
 def tweet_list(request):
     """List all tweets."""
-    tweets = Tweet.objects.all()
+    tweets = Tweet.objects.all().order_by("-created_at")
     return render(request, "tweet_list.html", {"tweets": tweets})
 
 
@@ -48,6 +48,8 @@ def tweet_edit(request, pk):
 def tweet_delete(request, pk):
     """Delete an existing tweet."""
     tweet = get_object_or_404(Tweet, pk=pk)
-    tweet.delete()
-    return redirect("tweet_list")
+    if request.method == "POST":
+        tweet.delete()
+        return redirect("tweet_list")
+
     return render(request, "tweet_delete.html", {"tweet": tweet})
