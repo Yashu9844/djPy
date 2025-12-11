@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Login | TweetBar{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="glass-card p-4 p-lg-5">
+            <p class="text-accent text-uppercase small fw-semibold mb-2">Welcome back</p>
+            <h2 class="fw-bold mb-3">Sign in to TweetBar</h2>
+            <p class="text-muted mb-4">Access your account via API authentication</p>
+            
+            <div id="errorAlert" class="alert alert-danger" style="display: none;"></div>
+            
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Username</label>
+                    <input type="text" id="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Password</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-gradient w-100 py-2" id="submitBtn">
+                    Sign In
+                </button>
+            </form>
+            
+            <div class="text-center mt-4">
+                <span class="text-muted">Don't have an account?</span>
+                <a class="ms-2 btn btn-outline-light btn-sm" href="{% url 'register_api' %}">Register</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'api.js' %}"></script>
+<script>
+const api = window.tweetAPI;
+
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
+    const errorAlert = document.getElementById('errorAlert');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    errorAlert.style.display = 'none';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Signing in...';
+    
+    const result = await api.login(username, password);
+    
+    if (result.success) {
+        window.location.href = '{% url "tweet_list_api" %}';
+    } else {
+        let errorMsg = 'Login failed. ';
+        if (result.errors.non_field_errors) {
+            errorMsg += result.errors.non_field_errors.join(' ');
+        } else if (result.errors.detail) {
+            errorMsg += result.errors.detail;
+        } else {
+            errorMsg += 'Please check your credentials.';
+        }
+        errorAlert.textContent = errorMsg;
+        errorAlert.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Sign In';
+    }
+});
+
+// Check if already logged in
+if (api.isAuthenticated()) {
+    window.location.href = '{% url "tweet_list_api" %}';
+}
+</script>
+{% endblock %}
