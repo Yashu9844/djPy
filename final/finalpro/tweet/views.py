@@ -71,3 +71,18 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, "registration/register.html", {"form": form})
+
+
+def tweet_list_api(request):
+    """API-powered tweet list view."""
+    return render(request, "tweet_list_api.html")
+
+
+def login_api(request):
+    """API-powered login view."""
+    return render(request, "login_api.html")
+
+
+def register_api(request):
+    """API-powered registration view."""
+    return render(request, "register_api.html")

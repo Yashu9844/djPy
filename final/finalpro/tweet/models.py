@@ -9,5 +9,9 @@ class Tweet(models.Model):
     image = models.ImageField(upload_to='tweet_images/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at', '-id']
+
     def __str__(self):
         return self.text
